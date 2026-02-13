@@ -352,8 +352,7 @@
       newLeft = clamp(newLeft, 0, z.width - b.width);
       newTop  = clamp(newTop, 0, z.height - b.height);
 
-      noBtn.style.left = newLeft + "px";
-      noBtn.style.top = newTop + "px";
+noBtn.style.transition = "left .25s ease, top .25s ease";
       noBtn.style.transform = "none";
 
       growYes();
