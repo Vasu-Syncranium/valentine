@@ -358,6 +358,38 @@
 
       growYes();
     }
+    /* ---------- NO BUTTON TOUCH + HOVER ESCAPE ---------- */
+
+function randomMoveNo() {
+  const z = zone.getBoundingClientRect();
+  const b = noBtn.getBoundingClientRect();
+
+  const maxLeft = z.width - b.width;
+  const maxTop  = z.height - b.height;
+
+  const newLeft = Math.random() * maxLeft;
+  const newTop  = Math.random() * maxTop;
+
+  noBtn.style.left = newLeft + "px";
+  noBtn.style.top = newTop + "px";
+  noBtn.style.transform = "none";
+
+  growYes();
+}
+
+/* Desktop hover */
+noBtn.addEventListener("mouseenter", randomMoveNo);
+
+/* Mobile touch */
+noBtn.addEventListener("touchstart", e => {
+  e.preventDefault();     // stop click
+  randomMoveNo();
+}, { passive: false });
+
+/* Pointer (modern unified events) */
+noBtn.addEventListener("pointerdown", e => {
+  if (e.pointerType === "touch") randomMoveNo();
+});
 
     zone.addEventListener("pointermove", e => {
       const b = noBtn.getBoundingClientRect();
